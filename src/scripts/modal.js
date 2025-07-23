@@ -38,3 +38,23 @@ function handleEscape(evt) {
 export function handleOverlayClick(evt) {
   if (evt.target === evt.currentTarget) closeModal(evt.currentTarget);
 }
+
+export function confirmModal() {
+  const confirmModal = document.querySelector('.popup_type_confirm');
+  const confirmButton = confirmModal.querySelector('.popup__button-confirm');
+
+  return (callback) => {
+    const handleConfirm = () => {
+      callback();
+      closeModal(confirmModal);
+      confirmButton.removeEventListener('click', handleConfirm);
+    };
+
+    confirmButton.addEventListener('click', handleConfirm);
+    openModal(confirmModal);
+
+    return () => {
+      confirmButton.removeEventListener('click', handleConfirm);
+    };
+  };
+}

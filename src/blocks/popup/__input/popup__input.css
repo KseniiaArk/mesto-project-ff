@@ -20,3 +20,11 @@
     line-height: 15px;
   }
 }
+
+.popup__input_type_error {
+  border-bottom: 1px solid #FF0000;
+}
+
+.popup__error_visible {
+  color: #FF0000;
+}

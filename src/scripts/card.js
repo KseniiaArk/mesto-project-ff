@@ -1,3 +1,4 @@
+import { addCardLike, removeCardLike } from "./api";
 // Функция создания карточек
 export function createCard(cardData, onDeleteClick, onLikeClick, onImageClick, userId) {
   const cardTemplate = document.querySelector('#card-template').content;
@@ -37,4 +38,22 @@ function isOwner(cardOwnerId, currentUserId) {
 
 function checkIfUserLiked(likes, userId) {
   return likes.some(like => like._id === userId);
+}
+
+export function handleLikeCard(likeButton, cardId, likeCountElement) {
+  const currentLiked = likeButton.classList.contains('card__like-button_is-active');
+  let apiProcess;
+  if (currentLiked) {
+    apiProcess = removeCardLike;
+  } else apiProcess = addCardLike;
+
+  return apiProcess(cardId) 
+    .then(cardData => {
+      likeButton.classList.toggle('card__like-button_is-active');
+      likeCountElement.textContent = cardData.likes.length;
+      return cardData
+    })
+    .catch(err => {
+      console.error('Ошибка:', err);
+    });
 }

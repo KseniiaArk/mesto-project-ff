@@ -39,7 +39,7 @@ export function handleOverlayClick(evt) {
   if (evt.target === evt.currentTarget) closeModal(evt.currentTarget);
 }
 
-export function confirmModal() {
+/*export function confirmModal() {
   const confirmModal = document.querySelector('.popup_type_confirm');
   const confirmButton = confirmModal.querySelector('.popup__button-confirm');
 
@@ -57,4 +57,4 @@ export function confirmModal() {
       confirmButton.removeEventListener('click', handleConfirm);
     };
   };
-}
+}*/
